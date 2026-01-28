@@ -115,7 +115,7 @@ After starting the server, open:
 * `POST /cities` – create city
 * `GET /cities` – list all cities
 * `GET /cities/{id}` – get city by ID
-* `PUT /cities/{id}` – update city
+* `PUT /cities/{id}` – update city (returns 400 if name already exists)
 * `DELETE /cities/{id}` – delete city
 
 ### Temperatures
@@ -139,6 +139,7 @@ After starting the server, open:
 * **SQLite** chosen for simplicity and ease of setup
 * **Open-Meteo API** used for weather data (no API key required)
 * Temperature fetching implemented as **async** using `httpx`
+* All city and temperature updates check for data integrity to avoid crashes
 
 ---
 
@@ -148,6 +149,8 @@ After starting the server, open:
 * No authentication or authorization implemented
 * No database migrations (tables are created automatically on startup)
 * Time is stored in **UTC**
+* API responses are accessed safely using `.get()` to prevent KeyErrors
+* Updating a city name checks for duplicates and returns a 400 error if the name exists
 
 ---
 

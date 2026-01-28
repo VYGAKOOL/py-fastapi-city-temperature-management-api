@@ -75,6 +75,15 @@ def update_city(
             detail="City not found",
         )
 
+    existing_city = db.query(City).filter(
+        City.name == city_in.name, City.id != city_id
+    ).first()
+    if existing_city:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="City with this name already exists",
+        )
+
     for field, value in city_in.model_dump().items():
         setattr(city, field, value)
 
