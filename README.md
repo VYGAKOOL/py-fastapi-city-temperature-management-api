@@ -1,6 +1,6 @@
 # City Temperature API
 
-FastAPI application for managing cities and storing historical temperature data fetched from an external weather API.
+FastAPI application for managing cities and storing historical temperature data fetched from an external weather API
 
 ---
 
